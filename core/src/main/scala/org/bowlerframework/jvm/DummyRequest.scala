@@ -13,6 +13,10 @@ class DummyRequest(var method: HttpMethod, path: String, params: Map[String, Any
 
   private var locales = List("en_US")
 
+  def getSession = new DummySession()
+
+  def getSession (create: Boolean): Option[Session] = Some(new DummySession())
+
   def setMappedPath(mappedPath: MappedPath) = {
     this.mappedPath = mappedPath
   }
@@ -47,7 +51,7 @@ class DummyRequest(var method: HttpMethod, path: String, params: Map[String, Any
 
   def getParameterMap = params
 
-  def getSession = session
+//  def getSession = session
 
   def isSecure = false
 

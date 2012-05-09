@@ -94,4 +94,8 @@ class DummySession extends Session {
   }
 
   def setValidationModel(model: Seq[Any]) = attributeMap += validationModel -> model
+
+  def setMaxInactiveInterval(interval: Int) = {}
+
+  def getMaxInactiveInterval = 0
 }

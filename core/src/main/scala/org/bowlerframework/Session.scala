@@ -33,4 +33,8 @@ trait Session {
 
   def getValidatedModel: Option[Seq[Any]]
 
+  def setMaxInactiveInterval(interval: Int)
+
+  def getMaxInactiveInterval: Int
+
 }

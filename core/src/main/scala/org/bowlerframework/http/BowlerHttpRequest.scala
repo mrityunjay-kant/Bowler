@@ -8,7 +8,19 @@ import org.bowlerframework._
 
 
 class BowlerHttpRequest(path: String, val request: HttpServletRequest, params: Map[String, Any]) extends Request with StringInputStreamReader {
-  val session = new BowlerHttpSession(request.getSession(true))
+//  var session = None
+
+  def getSession = new BowlerHttpSession(request.getSession(true))
+
+  def getSession (create: Boolean): Option[Session] = {
+
+    val session = request.getSession(create)
+
+    if (session != None)
+      Some(new BowlerHttpSession(session))
+    else
+      None
+  }
 
   private val intTransformer = new JavaIntegerTransformer
   private val longTransformer = new LongTransformer
@@ -73,7 +85,7 @@ class BowlerHttpRequest(path: String, val request: HttpServletRequest, params: M
 
   def getHeader(name: String) = Option(request.getHeader(name))
 
-  def getSession = session
+//  def getSession = request.getSession
 
   def getPath = path
 

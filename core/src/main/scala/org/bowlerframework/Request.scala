@@ -20,6 +20,8 @@ trait Request {
 
   def getSession: Session
 
+  def getSession (create: Boolean): Option[Session]
+
   def getHeader(name: String): Option[String]
 
   def getHeaders(name: String): List[String]
