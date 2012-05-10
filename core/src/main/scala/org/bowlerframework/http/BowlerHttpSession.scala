@@ -5,8 +5,7 @@ import collection.mutable.MutableList
 import org.bowlerframework.Session
 
 
-class
-BowlerHttpSession(session: HttpSession) extends Session {
+class BowlerHttpSession(session: HttpSession) extends Session {
   def getId = session.getId
 
   private val errors = "_bowlerValidationErrors"
@@ -16,7 +15,6 @@ BowlerHttpSession(session: HttpSession) extends Session {
   def getAttributeNames: List[String] = {
     val list = new MutableList[String]
     val enum = session.getAttributeNames
-
     while (enum.hasMoreElements)
       list += enum.nextElement.toString
     return list.toList
