@@ -12,7 +12,7 @@ class ScalateViewRenderer extends BrowserViewRenderer {
   protected def render(request: Request, response: Response, model: Map[String, Any]) = {
     if (request.getMethod == GET){
       try{
-        request.getSession.setLastGetPath(HTTP.relativeUrl(request.getPath))
+        if(!request.getSession.isEmpty) request.getSession.get.setLastGetPath(HTTP.relativeUrl(request.getPath))
       }catch{
         case e: IllegalStateException => println("IllegalStateException commiting lastGetPath: " + request.getPath)
       }

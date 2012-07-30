@@ -13,8 +13,8 @@ import xml.NodeSeq
  */
 
 class ValidationFeedbackPanel(request: Request = RequestScope.request) extends Component {
-
-  request.getSession.getErrors match {
+  if (!request.getSession.isEmpty)
+  request.getSession.get.getErrors match {
     case None => {
       $("#errorSpan").contents = ""
     }

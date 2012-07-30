@@ -13,7 +13,7 @@ class DummyRequest(var method: HttpMethod, path: String, params: Map[String, Any
 
   private var locales = List("en_US")
 
-  def getSession = new DummySession()
+  def getSession = Some(new DummySession())
 
   def getSession (create: Boolean): Option[Session] = Some(new DummySession())
 

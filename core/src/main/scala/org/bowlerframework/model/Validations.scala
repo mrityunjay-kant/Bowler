@@ -21,12 +21,12 @@ trait Validations {
    *
    */
   def validate(toValidate: Any*)(function: => Option[List[Tuple2[String, String]]]) {
-    if(request != null)
-      request.getSession.resetValidations
+    if(request != null && !request.getSession.isEmpty)
+      request.getSession.get.resetValidations
     val errors = function
     if (!None.equals(errors) && errors.get.size > 0) {
-      if(request != null)
-        request.getSession.setValidationModel(toValidate.toSeq)
+      if(request != null && !request.getSession.isEmpty)
+        request.getSession.get.setValidationModel(toValidate.toSeq)  //TODO Find another way to fix validation model.
       throw new ValidationException(errors.get)
     }
   }

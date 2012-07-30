@@ -18,7 +18,7 @@ trait Request {
 
   def setMappedPath(path: MappedPath)
 
-  def getSession: Session
+  def getSession: Option[Session]
 
   def getSession (create: Boolean): Option[Session]
 

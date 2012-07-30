@@ -43,6 +43,8 @@ class JsonViewRenderer(jsonFormats: Formats = (net.liftweb.json.DefaultFormats +
       })
       response.getWriter.write(compact(render(json)))
     }
+
+    val l : JObject = null
   }
 
 

@@ -8,7 +8,7 @@ import org.bowlerframework._
 
 
 class BowlerHttpRequest(path: String, val request: HttpServletRequest, params: Map[String, Any]) extends Request with StringInputStreamReader {
-  val session = new BowlerHttpSession(request.getSession(true))
+//  val session = new BowlerHttpSession(request.getSession(true))
 
   private val intTransformer = new JavaIntegerTransformer
   private val longTransformer = new LongTransformer
@@ -73,12 +73,16 @@ class BowlerHttpRequest(path: String, val request: HttpServletRequest, params: M
 
   def getHeader(name: String) = Option(request.getHeader(name))
 
-  def getSession = session
+  def getSession = {
+    println("\n\n\n\n\n ###########################################\n Got request to create a new session for no reason...thanks to bowler.")
+    getSession(false)  //validation model will stop working because of this. Find some other way to accommodate it!
+  }
 
   def getSession (create: Boolean): Option[Session] = {
-    request.getSession(create) match {
-      case null => None
-      case x    => Some(new BowlerHttpSession(x))
+    println("\n\n\n\n\n ###########################################\n Custom getSession was called with create: " + create)
+    create match {
+      case false => None
+      case true  => Some(new BowlerHttpSession(Some(request.getSession(true))))
     }
   }
 
