@@ -1,5 +1,7 @@
 package org.bowlerframework.http
 
+import javax.servlet.http.HttpServletRequest
+
 import org.scalatra.ScalatraFilter
 import javax.servlet.FilterConfig
 import org.scalatra.fileupload.FileUploadSupport
@@ -56,7 +58,7 @@ class BowlerFilter extends ScalatraFilter with FileUploadSupport with BowlerHttp
     }
   }
 
-  override def requestPath = if (request.getPathInfo != null) request.getPathInfo else request.getServletPath
+  override def requestPath(implicit request: HttpServletRequest) = if (request.getPathInfo != null) request.getPathInfo else request.getServletPath
 
   private def mapExecutor(routeExecutor: RouteExecutor): Any = {
     var files: collection.Map[String, FileItem] = Map[String, FileItem]()

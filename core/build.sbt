@@ -4,13 +4,9 @@ version := "0.6"
 
 organization := "org.bowlerframework"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.4"
 
 //artifact-name := "bingo"
-
-//seq(webSettings: _*)
-
-//seq(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*)
 
 resolvers ++= Seq(
     "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
@@ -22,29 +18,19 @@ resolvers ++= Seq(
 	"Codahale" at "http://repo.codahale.com"
     )
 
-resolvers += "sbt-idea-repo" at "http://mpeltonen.github.com/maven/"
-
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
 libraryDependencies ++= Seq(
-  "org.scalatra" %% "scalatra" % "2.0.2",
-  "org.scalatra" %% "scalatra-scalate" % "2.0.2",
-  "org.scalatra" %% "scalatra-specs2" % "2.0.2" % "test",
+  "org.scalatra" %% "scalatra" % "2.3.1",
+  "org.scalatra" %% "scalatra-scalate" % "2.3.1",
+  "org.scalatra" %% "scalatra-specs2" % "2.3.1" % "test",
+  "org.scalatra" %% "scalatra-fileupload" % "2.3.1",
+  "org.scalatra" %% "scalatra-scalate" % "2.3.1" % "runtime",
+  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
   "org.slf4j" % "slf4j-api" % "1.6.4",
-  "net.liftweb" % "lift-common_2.9.1" % "2.4",
-  "net.liftweb" % "lift-json_2.9.1" % "2.4",
-  "net.liftweb" % "lift-json-ext_2.9.1" % "2.4",
-  "com.recursivity" %% "recursivity-commons" % "0.6",
-  "org.scalatra" % "scalatra-fileupload_2.9.1" % "2.0.4",
-  "org.scalatra" % "scalatra-scalate_2.9.1" % "2.0.4" % "runtime",
-  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "com.mongodb.casbah" %% "casbah" % "2.1.5-1",
-  "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT",
-  "org.scalatra" %% "scalatra" % "2.0.4",
-  "org.scalatra" %% "scalatra-scalate" % "2.0.4",
-  "org.scalatra" %% "scalatra-specs2" % "2.0.4" % "test",
-  //"org.bowlerframework" %% "core" % "0.5.1" exclude("org.slf4j", "slf4j-nop"),
-  "commons-fileupload" % "commons-fileupload" % "1.2.2",
-  "org.scalatra" %% "scalatra-scalatest" % "2.0.2" % "test"
+  "net.liftweb" %% "lift-json" % "2.6.2",
+  "net.liftweb" %% "lift-json-ext" % "2.6.2",
+  "com.recursivity" %% "recursivity-commons" % "0.6"
   )
 
 // exclude("javax.servlet") --for commons fileupload
